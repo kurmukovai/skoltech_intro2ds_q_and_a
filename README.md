@@ -31,7 +31,7 @@ In linear model we look for a solution to the equation Y=w * X + b,  here w is a
   - scipy, statsmodels
   - Implement a gradient descent -> numpy, pytorch, tensorflow
 
-# Q&A-2 05.10.2021 TODO: add answers
+# Q&A-2 05.10.2021
 
 ### 1. Why do we normalize the data?
 
@@ -58,3 +58,10 @@ Now, linear model, literally "models" the dependence between `x`-s and `y`-s in 
 ### 4. Why should we impute instead of dropping?
 
 In my personal experience imputing with mean is never *very* good idea. You will have a separate seminar on imputing missing values. For now, imputing with "mean" is just for training purposes. And dropping is mostly a bad idea, since you are not guaranteed to have all features during inference, and you still want to be able to make predictions.
+
+# Q&A-3 07.10.2021 TODO: add answers
+
+1. Why to use KFold
+2. Installing packages using pip in colab
+3. random_state, what for? mainly for reproducibility
+4. Why `X.iloc[train]` but `y[train]` ?
