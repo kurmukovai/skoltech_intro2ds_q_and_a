@@ -62,6 +62,6 @@ In my personal experience imputing with mean is never *very* good idea. You will
 # Q&A-3 07.10.2021 TODO: add answers
 
 1. Why to use KFold
-2. Installing packages using pip in colab
+2. Installing packages using pip in colab. You could run a cmd commands in colab notebook by prepending them with `!`, e.g. `!pip install scikit-learn`, see https://stackoverflow.com/questions/51342408/how-do-i-install-python-packages-in-googles-colab
 3. random_state, what for? mainly for reproducibility
 4. Why `X.iloc[train]` but `y[train]` ?
