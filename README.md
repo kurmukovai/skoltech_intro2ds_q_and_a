@@ -33,17 +33,28 @@ In linear model we look for a solution to the equation Y=w * X + b,  here w is a
 
 # Q&A-2 05.10.2021 TODO: add answers
 
-### 1. Why normalize the data
-X: n obs x m features
+### 1. Why do we normalize the data?
 
--  X* = (X - mean(X)) / std(X) -> mean(X*) = 0, std(X*) = 1 Z-scoring # Standard Normal Distribution = N(0, 1)
--  Robust normalization 
--  min-max scoring: X* = (X - min(X)) / (max(X) - min(X))  min(X)=0, max(X)=1
+First, when we speak about data normalization, we typically mean feature-wise normalization, e.g. standard or z-scoring, min-max scaling:
+  - X* = (X - mean(X)) / std(X) -> mean(X*) = 0, std(X*) = 1
+  - min-max scoring: X* = (X - min(X)) / (max(X) - min(X))  min(X*)=0, max(X*)=1
 
-Linear models, will typically benefit from some kind of data normalization: Linear Reg, Logistic Reg, SVM, KNN 
-Tree based models, in most cases, do not affected by a normalization: Decision trees, Random Forest, Gradient boosting trees
+Second, not all ML models will benefit from data normalization:
+  - tree-based methods (*most likely*) will not be affected: Decision trees, Random Forest, Gradient boosting trees
+  - distance-based methods might benefit from data normalization, e.g. K nearest neighbours
+  - linear models, will *most likely* benefit from data normalization: Linear/Logistic regression, Support Vector Machine
 
-
-### 2. What is reg.intercept_ corresponds to?
+the latter is due to the fact that gradient descent-like methods are much more stable and converge faster to good solutions if data are standartized.
+### 2. What is `LinearRegression().intercept_` corresponds to?
+  
+This is `b` in Y = A * X + b, and A is stored in `LinearRegression().coef_`, see https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
+  
 ### 3. Why intercept in linear model is always a number and not a vector?
+
+Let's say you are solving a problem of predicting a price of a house, based on its square feet area, distance to the nearest subway and number of parking lots near by. Then, every observation (x) is a 3-dim vector, and for every observation you have a corresponding price of a house (y).
+
+Now, linear model, literally "models" the dependence between `x`-s and `y`-s in a form of linear function: `y = a * x + b`. Remember that `y` is a number, and `x` and `a` are vectors, so the only way we end up with a correct sizes of all terms is for `b` to be a number. Imaging that `x` is a vector of zeros, then the interpretation of `b` is a "baseline" price of a house.
+
 ### 4. Why should we impute instead of dropping?
+
+In my personal experience imputing with mean is never *very* good idea. You will have a separate seminar on imputing missing values. For now, imputing with "mean" is just for training purposes. And dropping is mostly a bad idea, since you are not guaranteed to have all features during inference, and you still want to be able to make predictions.
